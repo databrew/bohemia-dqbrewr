@@ -37,7 +37,7 @@ devtools::install_github('databrew/dataqualitybrewr')
 
 1. Check zip file submission
 ```r
-check_results <- check(input = 'healthecon.zip', func = check_healthecon)
+check_results <- check(input = PATH_TO_HEALTHECON_ZIPFILE, func = check_healthecon)
 ```
 
 2. After running checks, you will get an output of a `check_result` object mapping. The object mapping will contain the list of all available errors.
