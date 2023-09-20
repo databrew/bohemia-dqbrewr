@@ -33,19 +33,23 @@ devtools::install_github('databrew/dataqualitybrewr')
 
 ![](./man/figures/dqwf.png)
 
-## How to Use
+## How-To
 
 1. Check zip file submission
-
 ```r
-check_results <- check_healthecon(PATH_TO_HEALTH_ECON_FILE)
+check_results <- check(input = 'healthecon.zip', func = check_healthecon)
 ```
 
 2. After running checks, you will get an output of a `check_result` object mapping. The object mapping will contain the list of all available errors.
 
-To check errors:
+To check errors from unit test:
 ```r
 check_results$err_df
+```
+
+To check how your files will be stored in AWS (recursively):
+```r
+check_results$output_map
 ```
 
 3. Once all test have passed and resolved, parse `check_result` object mapping to promote function
