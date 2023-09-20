@@ -9,7 +9,7 @@
 #' @importFrom magrittr %>%
 #' @param check_results_obj this is a `check_result_object` coming from `check_` operation
 #' @param store_historical parameter whether to store data as a historical file with partition
-promote_staging_file_to_prod <- function(check_results_obj, store_historical = TRUE) {
+promote <- function(check_results_obj, store_historical = TRUE) {
   logger::log_info('Attempt to promote data to prod')
   run_date <- as.character(lubridate::date(lubridate::now()))
 
