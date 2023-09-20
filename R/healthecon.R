@@ -104,14 +104,14 @@ check_healthecon <- function(zip_path) {
     output_list$output_map <- list(
         list(
           output_filename = '/tmp/individual_data.csv',
-          curr_s3_key = 'metadata/healthecon_individual_data/individual_data.csv',
-          hist_s3_key = 'metadata/healthecon_individual_data/run_date={run_date}/individual_data.csv',
+          curr_s3_key = 'bohemia_prod/metadata_healthecon_individual_data/individual_data.csv',
+          hist_s3_key = 'bohemia_prod/metadata_healthecon_individual_data_hist/run_date={run_date}/individual_data.csv',
           bucket = 'bohemia-lake-db',
           data = staging_individual_data),
         list(
           output_filename = '/tmp/household_data.csv',
-          curr_s3_key = 'metadata/healthecon_household_data/household_data.csv',
-          hist_s3_key = 'metadata/healthecon_household_data/run_date={run_date}/household_data.csv',
+          curr_s3_key = 'bohemia_prod/metadata_healthecon_household_data/household_data.csv',
+          hist_s3_key = 'bohemia_prod/metadata_healthecon_household_data/run_date={run_date}/household_data.csv',
           bucket = 'bohemia-lake-db',
           data = staging_household_data)
     )
