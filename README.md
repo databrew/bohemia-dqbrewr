@@ -15,7 +15,14 @@ devtools::install_github('databrew/dataqualitybrewr')
 
 ## Workflow
 
-![plot](./man/figures/dataqualitybrewr-metadata.png)
+![](./man/figures/dqwf.png)
+
+## How to Use
+
+1. Check zip file submission
+2. After running checks, you will get an output of a `check_result` object mapping
+3. Pass `check_result` object mapping to promote function
+4. Once passed, data will be uploaded to AWS as a current snapshot or historical snapshot (optional, but good to have)
 
 ## FAQs
 
