@@ -1,6 +1,7 @@
 #' Check naming in zip file
 #'
 #' @param map object from map_metadata_staging_zip_file
+#' @import crayon
 #' @return TRUE if ERROR is intentionally captured, FALSE if passed the test
 check_zip_files_naming_validity <- function(map_obj, ...) {
   tryCatch({
@@ -22,6 +23,7 @@ check_zip_files_naming_validity <- function(map_obj, ...) {
 
 #' Check number of contents in a zip file
 #'
+#' @import crayon
 #' @param map object from map_metadata_staging_zip_file
 #' @return TRUE if ERROR is intentionally captured, FALSE if passed the test
 check_zip_n_files <- function(map_obj, ...) {
@@ -43,6 +45,7 @@ check_zip_n_files <- function(map_obj, ...) {
 
 
 #' Check OUT status
+#' @import crayon
 #' @description Check if household is out then all individuals in that household needs to be out
 check_out_status <- function(household_data,
                              individual_data,
@@ -71,6 +74,7 @@ check_out_status <- function(household_data,
 }
 
 #' Check EOS status
+#' @import crayon
 #' @description Check if household is eos then all individuals in that household needs to be eos
 check_eos_status <- function(household_data,
                              individual_data,

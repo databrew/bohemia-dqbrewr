@@ -3,6 +3,7 @@
 export(check)
 export(check_healthecon)
 export(promote)
+import(crayon)
 import(data.table)
 import(dplyr)
 import(logger)
