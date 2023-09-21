@@ -3,10 +3,11 @@
 #' @export
 #' @import logger
 #' @import dplyr
-#' @import data.table
 #' @import purrr
-#' @import paws
+#' @import cloudbrewr
+#' @import tidyr
 #' @importFrom magrittr %>%
+#' @importFrom data.table fwrite
 #' @param check_results_obj this is a `check_result_object` coming from `check_` operation
 #' @param store_historical parameter whether to store data as a historical file with partition
 promote <- function(check_results_obj, store_historical = TRUE) {
@@ -24,13 +25,13 @@ promote <- function(check_results_obj, store_historical = TRUE) {
   store_to_s3 <- purrr::map(check_results_obj$output_map, function(mp){
     tryCatch({
       fwrite(mp$data, mp$output_filename)
-      cloudbrewr::aws_s3_store(
+      aws_s3_store(
         filename = mp$output_filename,
         bucket = mp$bucket,
         key = mp$curr_s3_key)
 
       if(store_historical){
-        cloudbrewr::aws_s3_store(
+        aws_s3_store(
           filename = mp$output_filename,
           bucket = mp$bucket,
           key = glue::glue(mp$hist_s3_key, run_date = run_date))

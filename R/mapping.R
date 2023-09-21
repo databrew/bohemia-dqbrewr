@@ -4,11 +4,11 @@
 #' @inherit
 #' @import logger
 #' @import dplyr
-#' @import data.table
 #' @import purrr
 #' @importFrom magrittr %>%
 #' @importFrom utils unzip
 #' @importFrom stats setNames
+#' @importFrom data.table fread
 map_metadata_staging_zip_file <- function(zip_path, metadata_type) {
   temp <- unzip(zip_path, list = TRUE)$Name
   temp <- grep("csv$", temp, value = TRUE)

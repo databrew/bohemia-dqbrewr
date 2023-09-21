@@ -61,7 +61,6 @@ check_v2_to_v5_household_healthecon_status <- function(household_data) {
 #' @importFrom magrittr %>%
 #' @import logger
 #' @import dplyr
-#' @import data.table
 #' @import purrr
 #' @param zip_path this is where your zip file is located locally
 #' @return returns a `check_results_obj`
@@ -83,8 +82,13 @@ check_healthecon <- function(zip_path) {
   } else {
     # DO DATA ASSESSMENT
     # get staging and prod datasets
-    staging_individual_data <- map_obj$individual_data__staging_dataframe
-    staging_household_data <- map_obj$household_data__staging_dataframe %>% get_visit_flag()
+    staging_individual_data <- map_obj$individual_data__staging_dataframe %>%
+      dplyr::select(-fullname_dob, -fullname_id, -hecon_name) %>%
+      replace(is.na(.), '')
+    staging_household_data <- map_obj$household_data__staging_dataframe %>%
+      get_visit_flag() %>%
+      dplyr::select(-roster, -hecon_members, -visits_done) %>%
+      replace(is.na(.), '')
 
     # check if household is out then individual should be out too
     err_df <- dplyr::bind_rows(
@@ -111,7 +115,7 @@ check_healthecon <- function(zip_path) {
         list(
           output_filename = '/tmp/household_data.csv',
           curr_s3_key = 'bohemia_prod/metadata_healthecon_household_data/household_data.csv',
-          hist_s3_key = 'bohemia_prod/metadata_healthecon_household_data/run_date={run_date}/household_data.csv',
+          hist_s3_key = 'bohemia_prod/metadata_healthecon_household_data_hist/run_date={run_date}/household_data.csv',
           bucket = 'bohemia-lake-db',
           data = staging_household_data)
     )
